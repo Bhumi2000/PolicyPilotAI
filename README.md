@@ -12,18 +12,16 @@ structured validation, and a human-in-the-loop review step.
 
 | Role | Name | Enrollment no. |
 | --- | --- | --- |
-| Team leader | `<MEMBER_1_NAME>` | `<MEMBER_1_ENROLLMENT>` |
-| Member | `<MEMBER_2_NAME>` | `<MEMBER_2_ENROLLMENT>` |
-| Member | `<MEMBER_3_NAME>` | `<MEMBER_3_ENROLLMENT>` |
-| Member | `<MEMBER_4_NAME>` | `<MEMBER_4_ENROLLMENT>` |
+| Team leader | `Bhumika Sharma` | `S24CSEU2310` |
+| Member | `Mahak` | `S24CSEU2325` |
 
-- **Team ID:** `<TEAM_ID>`
-- **Batch:** `<BATCH>`
-- **Faculty:** `<FACULTY_NAME>`
+- **Team ID:** `36`
+- **Batch:** `87`
+- **Faculty:** `Indrajeet Gupta`
 - **Prototype link:** `<PROTOTYPE_LINK>`
 - **Reel link:** `<REEL_LINK>`
 
-*(Replace the placeholders above before sharing the repository.)*
+
 
 ## What it does
 
