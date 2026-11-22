@@ -9,11 +9,10 @@ venv/
 .env
 backend/.env
 
-# Node / build output
+# Node dependencies (the built frontend in frontend/dist IS committed on purpose,
+# so the single-service deployment can serve it without a Node build step)
 node_modules/
 frontend/node_modules/
-dist/
-frontend/dist/
 
 # Editors / OS
 .vscode/
