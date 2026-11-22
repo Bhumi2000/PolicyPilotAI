@@ -1,0 +1,87 @@
+PolicyPilot-AI/
+├── backend/
+│   ├── app/
+│   │   ├── prompts/
+│   │   │   ├── __init__.py
+│   │   │   └── versions.py
+│   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   ├── complaints.py
+│   │   │   ├── dashboard.py
+│   │   │   ├── policies.py
+│   │   │   └── prompts.py
+│   │   ├── schemas/
+│   │   │   ├── __init__.py
+│   │   │   └── models.py
+│   │   ├── services/
+│   │   │   ├── __init__.py
+│   │   │   ├── analysis_service.py
+│   │   │   ├── demo.py
+│   │   │   ├── evaluator.py
+│   │   │   ├── gemini_client.py
+│   │   │   ├── pdf_service.py
+│   │   │   └── retrieval.py
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── main.py
+│   │   └── store.py
+│   ├── data/
+│   │   ├── complaints.json
+│   │   └── policies.json
+│   ├── tests/
+│   │   ├── __init__.py
+│   │   ├── test_api.py
+│   │   └── test_retrieval.py
+│   ├── .env
+│   ├── .env.example
+│   └── requirements.txt
+├── docs/
+│   ├── project_documentation.md
+│   └── repository_structure.txt
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── AnalysisView.jsx
+│   │   │   ├── Layout.jsx
+│   │   │   └── ui.jsx
+│   │   ├── context/
+│   │   │   └── HealthContext.jsx
+│   │   ├── pages/
+│   │   │   ├── AnalyzeComplaint.jsx
+│   │   │   ├── ComplaintHistory.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── PolicyLibrary.jsx
+│   │   │   ├── PromptLab.jsx
+│   │   │   └── Settings.jsx
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── .env.example
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
+├── prompts/
+│   ├── final/
+│   │   └── P3_policy_grounded_resolution.txt
+│   ├── v1/
+│   │   └── basic_reply.txt
+│   ├── v2/
+│   │   └── structured_analysis.txt
+│   ├── v3/
+│   │   └── policy_grounded_resolution.txt
+│   └── README.md
+├── sample_data/
+│   ├── sample_policy.txt
+│   └── test_cases.json
+├── test-data/
+│   ├── actual_outputs.json
+│   ├── expected_outputs.json
+│   └── inputs.json
+├── .gitignore
+├── CHANGELOG.md
+└── README.md

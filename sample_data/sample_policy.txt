@@ -1,0 +1,52 @@
+=====================================================================
+FICTIONAL SAMPLE POLICY - "ShopEasy" (for demonstration only)
+=====================================================================
+This policy is entirely fictional and is used only to demonstrate the
+PolicyPilot AI prototype. It is not legal or commercial advice.
+
+1. REFUND POLICY
+Customers may request a full refund within 7 days of delivery. To be
+eligible, the item must be unused and returned in its original packaging.
+Refunds are issued to the original payment method within 5 to 7 business
+days after the returned item passes inspection. Shipping charges are
+refunded only when the return is caused by an error on our side.
+
+2. REPLACEMENT POLICY
+Damaged, defective or faulty items reported within 10 days of delivery are
+eligible for a free replacement of the same product. The customer must
+provide a clear photograph of the damage and the order id. Replacements are
+shipped within 3 business days of approval and are subject to stock
+availability. If the same product is out of stock, a full refund is offered
+instead of a replacement.
+
+3. RETURN POLICY FOR LARGE APPLIANCES
+Large appliances (for example refrigerators and washing machines) may be
+returned within 10 days of delivery only if they are unused and still in
+the sealed packaging. If the appliance was installed and then found faulty,
+the warranty process in section 6 applies instead of a standard return.
+
+4. DELIVERY POLICY
+Standard delivery takes 4 to 6 business days. Express delivery takes 1 to 2
+business days. A delivery is considered delayed when it exceeds the promised
+date by more than 7 days. For delays beyond 15 days, customers may choose
+between a full refund and a replacement. Compensation for ordinary delays is
+not offered unless the delay exceeds 15 days.
+
+5. CANCELLATION POLICY
+Orders may be cancelled free of charge before they are shipped. Once an order
+has been shipped it cannot be cancelled; the customer must instead follow the
+return policy after delivery. Digital products and gift cards cannot be
+cancelled or refunded once the code has been revealed.
+
+6. WARRANTY POLICY
+Electronics carry a 12-month manufacturer warranty covering manufacturing
+defects. The warranty does not cover physical damage, liquid damage or damage
+caused by misuse. Warranty claims require the order id and a service report
+from an authorised centre.
+
+7. EXCEPTIONS AND HUMAN REVIEW
+Requests that fall outside the windows in sections 1 to 6 are exceptions and
+require review and approval by a support manager. Support agents must not
+promise refunds, replacements, compensation or delivery dates that are not
+supported by this policy. If the correct outcome is unclear, escalate the
+case to a human reviewer instead of guessing.

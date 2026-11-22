@@ -1,0 +1,690 @@
+[
+  {
+    "id": "cmp_820398c918",
+    "created_at": "2026-11-22T14:32:07+00:00",
+    "prompt_version": "v3",
+    "mode": "demo",
+    "model": "demo",
+    "latency_ms": 0,
+    "input": {
+      "complaint": "My order arrived with a cracked screen. I would like a replacement please.",
+      "customer_name": "",
+      "order_id": "",
+      "product_category": "",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v3"
+    },
+    "result": {
+      "complaint_summary": "My order arrived with a cracked screen. I would like a replacement please.",
+      "category": "general",
+      "sentiment": "negative",
+      "urgency": "medium",
+      "customer_intent": "Obtain a resolution supported by company policy.",
+      "policy_evidence": [
+        "c3",
+        "c6",
+        "c5",
+        "c7"
+      ],
+      "suggested_resolution": "Explain the applicable policy clause and the exact next step it allows.",
+      "missing_information": [],
+      "risk_level": "medium",
+      "human_review_required": false,
+      "human_review_reason": "",
+      "generated_reply": "Hello, thank you for reaching out. Based on our policy I can confirm the next steps available for your case. A support specialist will confirm the outcome before any commitment is made."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c3",
+        "heading": "2. REPLACEMENT POLICY",
+        "text": "2. REPLACEMENT POLICY\nDamaged, defective or faulty items reported within 10 days of delivery are\neligible for a free replacement of the same product. The customer must\nprovide a clear photograph of the damage and the order id. Replacements are\nshipped within 3 business days of approval and are subject to stock\navailability. If the same product is out of stock, a full refund is offered\ninstead of a replacement.",
+        "score": 3.933
+      },
+      {
+        "clause_id": "c6",
+        "heading": "5. CANCELLATION POLICY",
+        "text": "5. CANCELLATION POLICY\nOrders may be cancelled free of charge before they are shipped. Once an order\nhas been shipped it cannot be cancelled; the customer must instead follow the\nreturn policy after delivery. Digital products and gift cards cannot be\ncancelled or refunded once the code has been revealed.",
+        "score": 1.967
+      },
+      {
+        "clause_id": "c5",
+        "heading": "4. DELIVERY POLICY",
+        "text": "4. DELIVERY POLICY\nStandard delivery takes 4 to 6 business days. Express delivery takes 1 to 2\nbusiness days. A delivery is considered delayed when it exceeds the promised\ndate by more than 7 days. For delays beyond 15 days, customers may choose\nbetween a full refund and a replacement. Compensation for ordinary delays is\nnot offered unless the delay exceeds 15 days.",
+        "score": 1.817
+      },
+      {
+        "clause_id": "c7",
+        "heading": "6. WARRANTY POLICY",
+        "text": "6. WARRANTY POLICY\nElectronics carry a 12-month manufacturer warranty covering manufacturing\ndefects. The warranty does not cover physical damage, liquid damage or damage\ncaused by misuse. Warranty claims require the order id and a service report\nfrom an authorised centre.",
+        "score": 1.817
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 5,
+      "completeness": 5,
+      "tone_empathy": 3,
+      "unsupported_claims": 5,
+      "escalation_appropriateness": 5,
+      "total": 23,
+      "flags": [
+        "7/7 core fields populated"
+      ]
+    },
+    "review_status": "pending",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_d9ef8cbf48",
+    "created_at": "2026-11-22T14:45:23+00:00",
+    "prompt_version": "v3",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 46129,
+    "input": {
+      "complaint": "My order arrived with a cracked screen. I would like a replacement please.",
+      "customer_name": "",
+      "order_id": "",
+      "product_category": "",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v3"
+    },
+    "result": {
+      "complaint_summary": "The customer received an item with a cracked screen and is requesting a replacement.",
+      "category": "damaged_item",
+      "sentiment": "negative",
+      "urgency": "medium",
+      "customer_intent": "request_replacement",
+      "policy_evidence": [
+        "c3"
+      ],
+      "suggested_resolution": "Request the order ID, delivery date, and a clear photograph of the cracked screen to verify eligibility for a free replacement within the 10-day reporting window.",
+      "missing_information": [
+        "order ID",
+        "clear photograph of the damage",
+        "delivery date"
+      ],
+      "risk_level": "medium",
+      "human_review_required": true,
+      "human_review_reason": "Key details including the order ID, delivery date, and photo evidence are missing.; several required customer details are missing",
+      "generated_reply": "I am sorry to hear that your item arrived with a cracked screen. Under our replacement policy, damaged items reported within 10 days of delivery are eligible for a free replacement. To assist you with this, please provide your order ID, the date the item was delivered, and a clear photograph of the damage."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c3",
+        "heading": "2. REPLACEMENT POLICY",
+        "text": "2. REPLACEMENT POLICY\nDamaged, defective or faulty items reported within 10 days of delivery are\neligible for a free replacement of the same product. The customer must\nprovide a clear photograph of the damage and the order id. Replacements are\nshipped within 3 business days of approval and are subject to stock\navailability. If the same product is out of stock, a full refund is offered\ninstead of a replacement.",
+        "score": 3.933
+      },
+      {
+        "clause_id": "c6",
+        "heading": "5. CANCELLATION POLICY",
+        "text": "5. CANCELLATION POLICY\nOrders may be cancelled free of charge before they are shipped. Once an order\nhas been shipped it cannot be cancelled; the customer must instead follow the\nreturn policy after delivery. Digital products and gift cards cannot be\ncancelled or refunded once the code has been revealed.",
+        "score": 1.967
+      },
+      {
+        "clause_id": "c5",
+        "heading": "4. DELIVERY POLICY",
+        "text": "4. DELIVERY POLICY\nStandard delivery takes 4 to 6 business days. Express delivery takes 1 to 2\nbusiness days. A delivery is considered delayed when it exceeds the promised\ndate by more than 7 days. For delays beyond 15 days, customers may choose\nbetween a full refund and a replacement. Compensation for ordinary delays is\nnot offered unless the delay exceeds 15 days.",
+        "score": 1.817
+      },
+      {
+        "clause_id": "c7",
+        "heading": "6. WARRANTY POLICY",
+        "text": "6. WARRANTY POLICY\nElectronics carry a 12-month manufacturer warranty covering manufacturing\ndefects. The warranty does not cover physical damage, liquid damage or damage\ncaused by misuse. Warranty claims require the order id and a service report\nfrom an authorised centre.",
+        "score": 1.817
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 5,
+      "completeness": 5,
+      "tone_empathy": 5,
+      "unsupported_claims": 3,
+      "escalation_appropriateness": 5,
+      "total": 23,
+      "flags": [
+        "7/7 core fields populated",
+        "possible unsupported promise: within 10 days"
+      ]
+    },
+    "review_status": "pending",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_9f21a7c4d0",
+    "created_at": "2026-11-20T10:15:42+00:00",
+    "prompt_version": "v3",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 38210,
+    "input": {
+      "complaint": "My new laptop arrived with a badly cracked screen. I want it replaced.",
+      "customer_name": "Priya Sharma",
+      "order_id": "SE-48213",
+      "product_category": "Electronics",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v3"
+    },
+    "result": {
+      "complaint_summary": "Customer received a laptop with a cracked screen and wants a replacement.",
+      "category": "damaged_item",
+      "sentiment": "negative",
+      "urgency": "high",
+      "customer_intent": "request_replacement",
+      "policy_evidence": [
+        "c3"
+      ],
+      "suggested_resolution": "Confirm delivery was within 10 days, request the order id and a photograph of the damage, then process a free replacement under section 2.",
+      "missing_information": [],
+      "risk_level": "medium",
+      "human_review_required": false,
+      "human_review_reason": "",
+      "generated_reply": "I'm sorry your laptop arrived with a cracked screen. Under our replacement policy, damaged items reported within 10 days of delivery qualify for a free replacement. Please share a clear photo of the damage and confirm your order id so we can arrange a replacement for you."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c3",
+        "heading": "2. REPLACEMENT POLICY",
+        "text": "2. REPLACEMENT POLICY\nDamaged, defective or faulty items reported within 10 days of delivery are\neligible for a free replacement of the same product. The customer must\nprovide a clear photograph of the damage and the order id. Replacements are\nshipped within 3 business days of approval and are subject to stock\navailability. If the same product is out of stock, a full refund is offered\ninstead of a replacement.",
+        "score": 3.912
+      },
+      {
+        "clause_id": "c7",
+        "heading": "6. WARRANTY POLICY",
+        "text": "6. WARRANTY POLICY\nElectronics carry a 12-month manufacturer warranty covering manufacturing\ndefects. The warranty does not cover physical damage, liquid damage or damage\ncaused by misuse. Warranty claims require the order id and a service report\nfrom an authorised centre.",
+        "score": 1.884
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 5,
+      "completeness": 5,
+      "tone_empathy": 4,
+      "unsupported_claims": 5,
+      "escalation_appropriateness": 5,
+      "total": 24,
+      "flags": [
+        "7/7 core fields populated"
+      ]
+    },
+    "review_status": "approved",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_3c88b1e6a2",
+    "created_at": "2026-11-19T16:40:11+00:00",
+    "prompt_version": "v3",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 41102,
+    "input": {
+      "complaint": "I changed my mind about the shoes I ordered. Can I get a full refund?",
+      "customer_name": "Daniel Osei",
+      "order_id": "SE-47990",
+      "product_category": "Footwear",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v3"
+    },
+    "result": {
+      "complaint_summary": "Customer wants a full refund for shoes they no longer want.",
+      "category": "refund_request",
+      "sentiment": "neutral",
+      "urgency": "low",
+      "customer_intent": "request_refund",
+      "policy_evidence": [
+        "c2"
+      ],
+      "suggested_resolution": "Confirm the item is unused and in original packaging and was delivered within 7 days, then start the refund to the original payment method.",
+      "missing_information": [
+        "delivery date",
+        "confirmation the item is unused and in original packaging"
+      ],
+      "risk_level": "low",
+      "human_review_required": false,
+      "human_review_reason": "",
+      "generated_reply": "Thanks for reaching out. You can request a full refund within 7 days of delivery as long as the shoes are unused and still in their original packaging. Could you confirm your delivery date and that the packaging is unopened? Refunds are returned to your original payment method within 5 to 7 business days after inspection."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c2",
+        "heading": "1. REFUND POLICY",
+        "text": "1. REFUND POLICY\nCustomers may request a full refund within 7 days of delivery. To be\neligible, the item must be unused and returned in its original packaging.\nRefunds are issued to the original payment method within 5 to 7 business\ndays after the returned item passes inspection. Shipping charges are\nrefunded only when the return is caused by an error on our side.",
+        "score": 3.877
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 5,
+      "completeness": 5,
+      "tone_empathy": 5,
+      "unsupported_claims": 5,
+      "escalation_appropriateness": 5,
+      "total": 25,
+      "flags": [
+        "7/7 core fields populated"
+      ]
+    },
+    "review_status": "approved",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_6d5f90ab77",
+    "created_at": "2026-11-18T09:05:33+00:00",
+    "prompt_version": "v3",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 35674,
+    "input": {
+      "complaint": "My order was promised 3 weeks ago and still has not arrived. This is unacceptable, I want my money back.",
+      "customer_name": "Marcus Lee",
+      "order_id": "SE-47012",
+      "product_category": "Home",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v3"
+    },
+    "result": {
+      "complaint_summary": "Customer's delivery is more than 15 days late and they are demanding a refund.",
+      "category": "delivery_delay",
+      "sentiment": "angry",
+      "urgency": "high",
+      "customer_intent": "request_refund_for_delay",
+      "policy_evidence": [
+        "c5"
+      ],
+      "suggested_resolution": "Because the delay exceeds 15 days, offer the customer the choice between a full refund and a replacement, as allowed by section 4.",
+      "missing_information": [],
+      "risk_level": "medium",
+      "human_review_required": false,
+      "human_review_reason": "",
+      "generated_reply": "I'm very sorry your order is this late. Since your delivery is delayed by more than 15 days, our policy lets you choose either a full refund or a replacement. Please confirm which option you'd prefer and we will action it right away."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c5",
+        "heading": "4. DELIVERY POLICY",
+        "text": "4. DELIVERY POLICY\nStandard delivery takes 4 to 6 business days. Express delivery takes 1 to 2\nbusiness days. A delivery is considered delayed when it exceeds the promised\ndate by more than 7 days. For delays beyond 15 days, customers may choose\nbetween a full refund and a replacement. Compensation for ordinary delays is\nnot offered unless the delay exceeds 15 days.",
+        "score": 3.741
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 5,
+      "completeness": 5,
+      "tone_empathy": 4,
+      "unsupported_claims": 5,
+      "escalation_appropriateness": 5,
+      "total": 24,
+      "flags": [
+        "7/7 core fields populated"
+      ]
+    },
+    "review_status": "approved",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_11af3e2d94",
+    "created_at": "2026-11-17T18:22:57+00:00",
+    "prompt_version": "v2",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 44760,
+    "input": {
+      "complaint": "The washing machine I bought is unused and still sealed. I want to return it.",
+      "customer_name": "Aisha Khan",
+      "order_id": "SE-46655",
+      "product_category": "Large Appliances",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v2"
+    },
+    "result": {
+      "complaint_summary": "Customer wants to return an unused, sealed washing machine.",
+      "category": "large_appliance_return",
+      "sentiment": "neutral",
+      "urgency": "low",
+      "customer_intent": "request_return",
+      "policy_evidence": [
+        "c4"
+      ],
+      "suggested_resolution": "Confirm delivery was within 10 days and the packaging is still sealed, then accept the return under the large appliance policy.",
+      "missing_information": [
+        "delivery date"
+      ],
+      "risk_level": "low",
+      "human_review_required": false,
+      "human_review_reason": "",
+      "generated_reply": "Thank you for your message. Large appliances can be returned within 10 days of delivery if they are unused and still in the sealed packaging. Please confirm your delivery date and that the packaging is unopened so we can process the return."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c4",
+        "heading": "3. RETURN POLICY FOR LARGE APPLIANCES",
+        "text": "3. RETURN POLICY FOR LARGE APPLIANCES\nLarge appliances (for example refrigerators and washing machines) may be\nreturned within 10 days of delivery only if they are unused and still in\nthe sealed packaging. If the appliance was installed and then found faulty,\nthe warranty process in section 6 applies instead of a standard return.",
+        "score": 3.615
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 4,
+      "completeness": 4,
+      "tone_empathy": 4,
+      "unsupported_claims": 4,
+      "escalation_appropriateness": 4,
+      "total": 20,
+      "flags": [
+        "6/7 core fields populated"
+      ]
+    },
+    "review_status": "pending",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_7b2c48f1e5",
+    "created_at": "2026-11-15T11:48:19+00:00",
+    "prompt_version": "v3",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 33920,
+    "input": {
+      "complaint": "I want to cancel order SE-46200, it has not been shipped yet.",
+      "customer_name": "Tom Becker",
+      "order_id": "SE-46200",
+      "product_category": "Kitchen",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v3"
+    },
+    "result": {
+      "complaint_summary": "Customer wants to cancel an order that has not yet shipped.",
+      "category": "cancellation",
+      "sentiment": "neutral",
+      "urgency": "medium",
+      "customer_intent": "cancel_order",
+      "policy_evidence": [
+        "c6"
+      ],
+      "suggested_resolution": "Confirm the order has not shipped and cancel it free of charge under section 5.",
+      "missing_information": [],
+      "risk_level": "low",
+      "human_review_required": false,
+      "human_review_reason": "",
+      "generated_reply": "No problem. Orders can be cancelled free of charge before they are shipped. I have noted your request for order SE-46200 and it will be cancelled at no cost."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c6",
+        "heading": "5. CANCELLATION POLICY",
+        "text": "5. CANCELLATION POLICY\nOrders may be cancelled free of charge before they are shipped. Once an order\nhas been shipped it cannot be cancelled; the customer must instead follow the\nreturn policy after delivery. Digital products and gift cards cannot be\ncancelled or refunded once the code has been revealed.",
+        "score": 3.556
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 5,
+      "completeness": 5,
+      "tone_empathy": 4,
+      "unsupported_claims": 5,
+      "escalation_appropriateness": 5,
+      "total": 24,
+      "flags": [
+        "7/7 core fields populated"
+      ]
+    },
+    "review_status": "approved",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_52e9f0c3b8",
+    "created_at": "2026-11-14T14:03:05+00:00",
+    "prompt_version": "v3",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 47205,
+    "input": {
+      "complaint": "You already shipped my order but now I want to cancel it and get my money back immediately.",
+      "customer_name": "Lena Novak",
+      "order_id": "SE-45981",
+      "product_category": "Electronics",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v3"
+    },
+    "result": {
+      "complaint_summary": "Customer wants to cancel an order that has already shipped and receive an immediate refund.",
+      "category": "cancellation",
+      "sentiment": "negative",
+      "urgency": "high",
+      "customer_intent": "cancel_shipped_order",
+      "policy_evidence": [
+        "c6",
+        "c8"
+      ],
+      "suggested_resolution": "Explain that a shipped order cannot be cancelled; the customer must follow the return policy after delivery. Flag the case for a human reviewer because the requested outcome is not supported by policy.",
+      "missing_information": [],
+      "risk_level": "high",
+      "human_review_required": true,
+      "human_review_reason": "Requested outcome (cancel a shipped order) is outside policy and may require manager approval.",
+      "generated_reply": "Thank you for getting in touch. Unfortunately, once an order has shipped it can no longer be cancelled, so we are unable to refund it before delivery. After the item arrives you can use our return policy instead. I have flagged your case for a support manager to review."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c6",
+        "heading": "5. CANCELLATION POLICY",
+        "text": "5. CANCELLATION POLICY\nOrders may be cancelled free of charge before they are shipped. Once an order\nhas been shipped it cannot be cancelled; the customer must instead follow the\nreturn policy after delivery. Digital products and gift cards cannot be\ncancelled or refunded once the code has been revealed.",
+        "score": 3.902
+      },
+      {
+        "clause_id": "c8",
+        "heading": "7. EXCEPTIONS AND HUMAN REVIEW",
+        "text": "7. EXCEPTIONS AND HUMAN REVIEW\nRequests that fall outside the windows in sections 1 to 6 are exceptions and\nrequire review and approval by a support manager. Support agents must not\npromise refunds, replacements, compensation or delivery dates that are not\nsupported by this policy. If the correct outcome is unclear, escalate the\ncase to a human reviewer instead of guessing.",
+        "score": 2.114
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 5,
+      "completeness": 4,
+      "tone_empathy": 4,
+      "unsupported_claims": 4,
+      "escalation_appropriateness": 4,
+      "total": 21,
+      "flags": [
+        "policy exception — manager approval required",
+        "7/7 core fields populated"
+      ]
+    },
+    "review_status": "pending",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_83d0a6f2c9",
+    "created_at": "2026-11-12T08:31:44+00:00",
+    "prompt_version": "v2",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 42880,
+    "input": {
+      "complaint": "My wireless headphones stopped working after two months. I want them repaired or replaced under warranty.",
+      "customer_name": "Sofia Rossi",
+      "order_id": "SE-45120",
+      "product_category": "Electronics",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v2"
+    },
+    "result": {
+      "complaint_summary": "Customer's headphones failed after two months and they want a warranty repair or replacement.",
+      "category": "warranty_claim",
+      "sentiment": "negative",
+      "urgency": "medium",
+      "customer_intent": "warranty_claim",
+      "policy_evidence": [
+        "c7"
+      ],
+      "suggested_resolution": "Explain the 12-month warranty, request the order id and a service report from an authorised centre, and flag for review since those documents are not yet provided.",
+      "missing_information": [
+        "order id",
+        "service report from an authorised centre"
+      ],
+      "risk_level": "medium",
+      "human_review_required": true,
+      "human_review_reason": "Warranty claim is missing the required order id and service report.",
+      "generated_reply": "I'm sorry your headphones stopped working. Electronics carry a 12-month manufacturer warranty covering manufacturing defects. To proceed, please provide your order id and a service report from an authorised service centre so we can assess the repair or replacement."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c7",
+        "heading": "6. WARRANTY POLICY",
+        "text": "6. WARRANTY POLICY\nElectronics carry a 12-month manufacturer warranty covering manufacturing\ndefects. The warranty does not cover physical damage, liquid damage or damage\ncaused by misuse. Warranty claims require the order id and a service report\nfrom an authorised centre.",
+        "score": 3.688
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 5,
+      "completeness": 4,
+      "tone_empathy": 3,
+      "unsupported_claims": 4,
+      "escalation_appropriateness": 4,
+      "total": 20,
+      "flags": [
+        "warranty claim requires service report"
+      ]
+    },
+    "review_status": "pending",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_a4f71d06b3",
+    "created_at": "2026-11-10T19:57:26+00:00",
+    "prompt_version": "v3",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 45610,
+    "input": {
+      "complaint": "I want a refund for the blender I bought three weeks ago. I only opened it yesterday.",
+      "customer_name": "Ravi Menon",
+      "order_id": "SE-44402",
+      "product_category": "Kitchen",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v3"
+    },
+    "result": {
+      "complaint_summary": "Customer is requesting a refund three weeks after purchase, which is outside the 7-day window.",
+      "category": "refund_request",
+      "sentiment": "neutral",
+      "urgency": "medium",
+      "customer_intent": "request_out_of_window_refund",
+      "policy_evidence": [
+        "c2",
+        "c8"
+      ],
+      "suggested_resolution": "Explain that the 7-day refund window has passed and that this is an exception requiring manager review; do not promise a refund.",
+      "missing_information": [],
+      "risk_level": "high",
+      "human_review_required": true,
+      "human_review_reason": "Refund request falls outside the 7-day policy window; requires manager approval.",
+      "generated_reply": "Thank you for your message. Our refund policy covers requests made within 7 days of delivery, and your order is now three weeks old, so this falls outside the standard window. I have escalated your case to a support manager who will review whether an exception can be made."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c2",
+        "heading": "1. REFUND POLICY",
+        "text": "1. REFUND POLICY\nCustomers may request a full refund within 7 days of delivery. To be\neligible, the item must be unused and returned in its original packaging.\nRefunds are issued to the original payment method within 5 to 7 business\ndays after the returned item passes inspection. Shipping charges are\nrefunded only when the return is caused by an error on our side.",
+        "score": 3.744
+      },
+      {
+        "clause_id": "c8",
+        "heading": "7. EXCEPTIONS AND HUMAN REVIEW",
+        "text": "7. EXCEPTIONS AND HUMAN REVIEW\nRequests that fall outside the windows in sections 1 to 6 are exceptions and\nrequire review and approval by a support manager. Support agents must not\npromise refunds, replacements, compensation or delivery dates that are not\nsupported by this policy. If the correct outcome is unclear, escalate the\ncase to a human reviewer instead of guessing.",
+        "score": 2.031
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 4,
+      "completeness": 4,
+      "tone_empathy": 3,
+      "unsupported_claims": 3,
+      "escalation_appropriateness": 3,
+      "total": 17,
+      "flags": [
+        "request outside policy window",
+        "escalated for human review"
+      ]
+    },
+    "review_status": "pending",
+    "edited_reply": null
+  },
+  {
+    "id": "cmp_0e6b93cf5a",
+    "created_at": "2026-11-07T13:12:58+00:00",
+    "prompt_version": "v1",
+    "mode": "live",
+    "model": "gemini-3.5-flash",
+    "latency_ms": 52140,
+    "input": {
+      "complaint": "The gift card I bought was already redeemed when I tried to use it. I demand a refund right now!",
+      "customer_name": "Grace Miller",
+      "order_id": "SE-43777",
+      "product_category": "Gift Cards",
+      "policy_ids": [
+        "pol_5ea44914ef"
+      ],
+      "prompt_version": "v1"
+    },
+    "result": {
+      "complaint_summary": "Customer's gift card was already redeemed and they are demanding an immediate refund.",
+      "category": "digital_goods",
+      "sentiment": "angry",
+      "urgency": "high",
+      "customer_intent": "request_refund_for_digital_good",
+      "policy_evidence": [
+        "c6"
+      ],
+      "suggested_resolution": "Explain that gift cards cannot be refunded once the code has been revealed, avoid promising a refund, and escalate the redemption dispute for investigation.",
+      "missing_information": [
+        "proof the code was revealed before use"
+      ],
+      "risk_level": "high",
+      "human_review_required": true,
+      "human_review_reason": "Digital goods cannot be refunded under policy; dispute requires investigation.",
+      "generated_reply": "I'm sorry to hear your gift card was already redeemed. Under our cancellation policy, digital products and gift cards cannot be refunded once the code has been revealed. I have escalated your case so the redemption can be investigated, and a manager will follow up with you."
+    },
+    "retrieved_clauses": [
+      {
+        "clause_id": "c6",
+        "heading": "5. CANCELLATION POLICY",
+        "text": "5. CANCELLATION POLICY\nOrders may be cancelled free of charge before they are shipped. Once an order\nhas been shipped it cannot be cancelled; the customer must instead follow the\nreturn policy after delivery. Digital products and gift cards cannot be\ncancelled or refunded once the code has been revealed.",
+        "score": 3.699
+      },
+      {
+        "clause_id": "c8",
+        "heading": "7. EXCEPTIONS AND HUMAN REVIEW",
+        "text": "7. EXCEPTIONS AND HUMAN REVIEW\nRequests that fall outside the windows in sections 1 to 6 are exceptions and\nrequire review and approval by a support manager. Support agents must not\npromise refunds, replacements, compensation or delivery dates that are not\nsupported by this policy. If the correct outcome is unclear, escalate the\ncase to a human reviewer instead of guessing.",
+        "score": 2.088
+      }
+    ],
+    "evaluation": {
+      "policy_adherence": 5,
+      "completeness": 5,
+      "tone_empathy": 3,
+      "unsupported_claims": 4,
+      "escalation_appropriateness": 4,
+      "total": 21,
+      "flags": [
+        "possible unsupported promise: refund",
+        "escalated for human review"
+      ]
+    },
+    "review_status": "pending",
+    "edited_reply": null
+  }
+]

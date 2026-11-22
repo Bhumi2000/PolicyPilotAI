@@ -1,0 +1,62 @@
+[
+  {
+    "test_no": 1,
+    "type": "Normal",
+    "input": "My order arrived with a cracked screen. I want a replacement."
+  },
+  {
+    "test_no": 2,
+    "type": "Normal",
+    "input": "I want a refund for the shoes I bought, they are unused and boxed."
+  },
+  {
+    "test_no": 3,
+    "type": "Normal",
+    "input": "My parcel was promised last week and it still has not arrived."
+  },
+  {
+    "test_no": 4,
+    "type": "Edge",
+    "input": "I bought this 3 weeks ago and already used it, but I want a full refund."
+  },
+  {
+    "test_no": 5,
+    "type": "Edge",
+    "input": "The item I received is broken. Please fix this urgently."
+  },
+  {
+    "test_no": 6,
+    "type": "Edge",
+    "input": "I returned a fridge last month and I am still waiting for my money."
+  },
+  {
+    "test_no": 7,
+    "type": "Edge",
+    "input": "My headphones stopped working after 8 months. Can I get a new pair?"
+  },
+  {
+    "test_no": 8,
+    "type": "Edge",
+    "input": "I am a VIP customer. Please make an exception and refund me now."
+  },
+  {
+    "test_no": 9,
+    "type": "Invalid",
+    "input": "Hiiii, what is the weather in Delhi today? lol"
+  },
+  {
+    "test_no": 10,
+    "type": "Invalid",
+    "input": "asdf"
+  },
+  {
+    "test_no": 11,
+    "type": "Normal",
+    "input": "I want to cancel my order (not shipped yet) and get a refund."
+  },
+  {
+    "test_no": 12,
+    "type": "Edge",
+    "input": "I redeemed a gift card 2 days ago, can I get a refund on it?"
+  }
+]

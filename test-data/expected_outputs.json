@@ -1,0 +1,62 @@
+[
+  {
+    "test_no": 1,
+    "type": "Normal",
+    "expected": "Category damaged/defective; replacement offered under section 2; photo and order id requested."
+  },
+  {
+    "test_no": 2,
+    "type": "Normal",
+    "expected": "Refund offered if within 7 days of delivery (section 1); timeline 5-7 business days stated."
+  },
+  {
+    "test_no": 3,
+    "type": "Normal",
+    "expected": "Delivery category; delay checked against the 7-day and 15-day thresholds (section 4)."
+  },
+  {
+    "test_no": 4,
+    "type": "Edge",
+    "expected": "Outside the 7-day window; no automatic refund; escalate as an exception (section 7)."
+  },
+  {
+    "test_no": 5,
+    "type": "Edge",
+    "expected": "Order id and photo missing; system lists them in missing_information."
+  },
+  {
+    "test_no": 6,
+    "type": "Edge",
+    "expected": "Large appliance + refund timeline; retrieve sections 1 and 3; flag for review."
+  },
+  {
+    "test_no": 7,
+    "type": "Edge",
+    "expected": "Within 12-month warranty (section 6); warranty claim requires order id and service report."
+  },
+  {
+    "test_no": 8,
+    "type": "Edge",
+    "expected": "Exception request; must not promise a refund; human_review_required true (section 7)."
+  },
+  {
+    "test_no": 9,
+    "type": "Invalid",
+    "expected": "Unrelated to policy; no clause retrieved; escalate, no invented answer."
+  },
+  {
+    "test_no": 10,
+    "type": "Invalid",
+    "expected": "No usable complaint; no clause retrieved; request clarification, no fabricated resolution."
+  },
+  {
+    "test_no": 11,
+    "type": "Normal",
+    "expected": "Free cancellation before shipping (section 5); refund follows section 1."
+  },
+  {
+    "test_no": 12,
+    "type": "Edge",
+    "expected": "Gift cards non-refundable once revealed (section 5); deny politely and explain the clause."
+  }
+]

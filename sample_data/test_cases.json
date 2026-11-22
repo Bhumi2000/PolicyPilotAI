@@ -1,0 +1,78 @@
+{
+  "policy": "sample_data/sample_policy.txt",
+  "notes": "Twelve test inputs used for the Milestone 2 test table. Types: Normal, Edge, Invalid. Expected outputs are derived from the fictional sample policy.",
+  "cases": [
+    {
+      "test_no": 1,
+      "type": "Normal",
+      "input": "My order arrived with a cracked screen. I want a replacement.",
+      "expected": "Category damaged/defective; replacement offered under section 2; photo and order id requested."
+    },
+    {
+      "test_no": 2,
+      "type": "Normal",
+      "input": "I want a refund for the shoes I bought, they are unused and boxed.",
+      "expected": "Refund offered if within 7 days of delivery (section 1); timeline 5-7 business days stated."
+    },
+    {
+      "test_no": 3,
+      "type": "Normal",
+      "input": "My parcel was promised last week and it still has not arrived.",
+      "expected": "Delivery category; delay checked against the 7-day and 15-day thresholds (section 4)."
+    },
+    {
+      "test_no": 4,
+      "type": "Edge",
+      "input": "I bought this 3 weeks ago and already used it, but I want a full refund.",
+      "expected": "Outside the 7-day window; no automatic refund; escalate as an exception (section 7)."
+    },
+    {
+      "test_no": 5,
+      "type": "Edge",
+      "input": "The item I received is broken. Please fix this urgently.",
+      "expected": "Order id and photo missing; system lists them in missing_information."
+    },
+    {
+      "test_no": 6,
+      "type": "Edge",
+      "input": "I returned a fridge last month and I am still waiting for my money.",
+      "expected": "Large appliance + refund timeline; retrieve sections 1 and 3; flag for review."
+    },
+    {
+      "test_no": 7,
+      "type": "Edge",
+      "input": "My headphones stopped working after 8 months. Can I get a new pair?",
+      "expected": "Within 12-month warranty (section 6); warranty claim requires order id and service report."
+    },
+    {
+      "test_no": 8,
+      "type": "Edge",
+      "input": "I am a VIP customer. Please make an exception and refund me now.",
+      "expected": "Exception request; must not promise a refund; human_review_required true (section 7)."
+    },
+    {
+      "test_no": 9,
+      "type": "Invalid",
+      "input": "Hiiii, what is the weather in Delhi today? lol",
+      "expected": "Unrelated to policy; no clause retrieved; escalate, no invented answer."
+    },
+    {
+      "test_no": 10,
+      "type": "Invalid",
+      "input": "asdf",
+      "expected": "No usable complaint; no clause retrieved; request clarification, no fabricated resolution."
+    },
+    {
+      "test_no": 11,
+      "type": "Normal",
+      "input": "I want to cancel my order (not shipped yet) and get a refund.",
+      "expected": "Free cancellation before shipping (section 5); refund follows section 1."
+    },
+    {
+      "test_no": 12,
+      "type": "Edge",
+      "input": "I redeemed a gift card 2 days ago, can I get a refund on it?",
+      "expected": "Gift cards non-refundable once revealed (section 5); deny politely and explain the clause."
+    }
+  ]
+}

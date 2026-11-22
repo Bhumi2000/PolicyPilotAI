@@ -1,0 +1,86 @@
+[
+  {
+    "test_no": 1,
+    "type": "Normal",
+    "actual": "category general (not 'damaged'); replacement clause c3 ranked top; no photo requested",
+    "pass_fail": "Fail",
+    "evaluation_total_25": 23
+  },
+  {
+    "test_no": 2,
+    "type": "Normal",
+    "actual": "category refund; refund clause c2 ranked top; wrongly asks for order id already supplied",
+    "pass_fail": "Fail",
+    "evaluation_total_25": 23
+  },
+  {
+    "test_no": 3,
+    "type": "Normal",
+    "actual": "category general; delivery clause c5 retrieved; did not escalate (engine flag)",
+    "pass_fail": "Fail",
+    "evaluation_total_25": 20
+  },
+  {
+    "test_no": 4,
+    "type": "Edge",
+    "actual": "category refund; outside 7-day window; escalated to human review; no promise made",
+    "pass_fail": "Pass",
+    "evaluation_total_25": 23
+  },
+  {
+    "test_no": 5,
+    "type": "Edge",
+    "actual": "category damaged; missing_information = ['order id']; no invented resolution",
+    "pass_fail": "Pass",
+    "evaluation_total_25": 20
+  },
+  {
+    "test_no": 6,
+    "type": "Edge",
+    "actual": "large-appliance clause c4 + refund clause c2 retrieved; escalated for review",
+    "pass_fail": "Pass",
+    "evaluation_total_25": 23
+  },
+  {
+    "test_no": 7,
+    "type": "Edge",
+    "actual": "category general; warranty clause (c7) NOT retrieved; cancellation clause c6 returned instead",
+    "pass_fail": "Fail",
+    "evaluation_total_25": 20
+  },
+  {
+    "test_no": 8,
+    "type": "Edge",
+    "actual": "exception detected; human_review_required true; no refund promised",
+    "pass_fail": "Pass",
+    "evaluation_total_25": 23
+  },
+  {
+    "test_no": 9,
+    "type": "Invalid",
+    "actual": "no clause retrieved; escalated; but flagged as claiming policy evidence without policy",
+    "pass_fail": "Fail",
+    "evaluation_total_25": 19
+  },
+  {
+    "test_no": 10,
+    "type": "Invalid",
+    "actual": "no clause retrieved; escalated; but flagged as claiming policy evidence without policy",
+    "pass_fail": "Fail",
+    "evaluation_total_25": 19
+  },
+  {
+    "test_no": 11,
+    "type": "Normal",
+    "actual": "cancellation clause c6 + refund clause c2 retrieved; escalated; no promise made",
+    "pass_fail": "Pass",
+    "evaluation_total_25": 23
+  },
+  {
+    "test_no": 12,
+    "type": "Edge",
+    "actual": "gift-card clause c6 retrieved; refund declined politely; escalated",
+    "pass_fail": "Pass",
+    "evaluation_total_25": 23
+  }
+]

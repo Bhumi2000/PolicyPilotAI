@@ -1,0 +1,63 @@
+"""Thin async client for the Google Gemini REST API.
+
+Only the live path lives here. Demo/offline behaviour is handled explicitly in
+``analysis_service`` so that a demo answer can never be mistaken for a real model
+call.
+"""
+from __future__ import annotations
+
+from typing import Optional
+
+import httpx
+
+from ..config import settings
+
+_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+
+
+class GeminiError(Exception):
+    """Raised when the Gemini API cannot be reached or returns an error."""
+
+
+async def generate(
+    system_prompt: str,
+    user_prompt: str,
+    temperature: Optional[float] = None,
+    json_mode: bool = True,
+) -> str:
+    """Call Gemini and return the raw text of the first candidate."""
+    if not settings.gemini_api_key:
+        raise GeminiError("GEMINI_API_KEY is not configured.")
+
+    payload = {
+        "contents": [{"role": "user", "parts": [{"text": user_prompt}]}],
+        "generationConfig": {
+            "temperature": temperature if temperature is not None else settings.gemini_temperature,
+        },
+    }
+    if system_prompt:
+        payload["systemInstruction"] = {"parts": [{"text": system_prompt}]}
+    if json_mode:
+        payload["generationConfig"]["responseMimeType"] = "application/json"
+
+    url = _ENDPOINT.format(model=settings.gemini_model)
+    try:
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            response = await client.post(
+                url, params={"key": settings.gemini_api_key}, json=payload
+            )
+    except httpx.HTTPError as exc:
+        raise GeminiError(f"Could not reach the Gemini API: {exc}") from exc
+
+    if response.status_code == 400 and "API key not valid" in response.text:
+        raise GeminiError("The Gemini API key is invalid. Check backend/.env.")
+    if response.status_code == 429:
+        raise GeminiError("Gemini rate limit hit (429). Wait a moment and retry.")
+    if response.status_code >= 400:
+        raise GeminiError(f"Gemini error {response.status_code}: {response.text[:200]}")
+
+    try:
+        data = response.json()
+        return data["candidates"][0]["content"]["parts"][0]["text"]
+    except (KeyError, IndexError, ValueError) as exc:
+        raise GeminiError("Gemini returned an unexpected response shape.") from exc
