@@ -3,6 +3,8 @@ from __future__ import annotations
 
 from typing import List
 
+import logging
+
 from fastapi import APIRouter, HTTPException
 
 from ..schemas.models import (
@@ -16,6 +18,8 @@ from ..schemas.models import (
 from ..services.analysis_service import AnalysisError, run_analysis
 from ..services.gemini_client import GeminiError
 from ..store import get_complaint, list_complaints, list_policies, update_complaint
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/complaints", tags=["complaints"])
 
@@ -42,6 +46,9 @@ async def analyze_complaint(payload: ComplaintRequest) -> AnalysisRecord:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
     except GeminiError as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
+    except Exception as exc:  # noqa: BLE001 - surface a readable error to the UI
+        logger.exception("Complaint analysis failed")
+        raise HTTPException(status_code=500, detail=f"Analysis failed: {exc}") from exc
 
 
 @router.post("/compare", response_model=CompareResponse)
@@ -66,6 +73,11 @@ async def compare_versions(payload: CompareRequest) -> CompareResponse:
             raise HTTPException(status_code=503, detail=str(exc)) from exc
         except GeminiError as exc:
             raise HTTPException(status_code=502, detail=str(exc)) from exc
+        except Exception as exc:  # noqa: BLE001 - surface a readable error to the UI
+            logger.exception("Prompt comparison failed for %s", version)
+            raise HTTPException(
+                status_code=500, detail=f"Analysis failed ({version}): {exc}"
+            ) from exc
 
     def score(record: AnalysisRecord) -> str:
         return f"{record.evaluation.total}/25"

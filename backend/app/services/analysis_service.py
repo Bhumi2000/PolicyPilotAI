@@ -38,9 +38,10 @@ def _extract_json(text: str) -> Optional[Dict[str, Any]]:
     if start == -1 or end <= start:
         return None
     try:
-        return json.loads(cleaned[start : end + 1])
+        data = json.loads(cleaned[start : end + 1])
     except json.JSONDecodeError:
         return None
+    return data if isinstance(data, dict) else None
 
 
 def _normalise(value: Any, allowed: tuple, default: str) -> str:

@@ -6,7 +6,7 @@ call.
 """
 from __future__ import annotations
 
-from typing import Optional
+from typing import Any, Optional
 
 import httpx
 
@@ -50,7 +50,16 @@ async def generate(
         raise GeminiError(f"Could not reach the Gemini API: {exc}") from exc
 
     if response.status_code == 400 and "API key not valid" in response.text:
-        raise GeminiError("The Gemini API key is invalid. Check backend/.env.")
+        raise GeminiError("The Gemini API key is invalid. Check GEMINI_API_KEY.")
+    if response.status_code in (401, 403):
+        raise GeminiError(
+            f"Gemini rejected the API key ({response.status_code}). Check GEMINI_API_KEY."
+        )
+    if response.status_code == 404:
+        raise GeminiError(
+            f"Gemini model '{settings.gemini_model}' was not found or is not available "
+            "for this API key. Set GEMINI_MODEL to a model your key can use."
+        )
     if response.status_code == 429:
         raise GeminiError("Gemini rate limit hit (429). Wait a moment and retry.")
     if response.status_code >= 400:
@@ -58,6 +67,30 @@ async def generate(
 
     try:
         data = response.json()
-        return data["candidates"][0]["content"]["parts"][0]["text"]
-    except (KeyError, IndexError, ValueError) as exc:
-        raise GeminiError("Gemini returned an unexpected response shape.") from exc
+    except ValueError as exc:
+        raise GeminiError("Gemini returned a non-JSON response.") from exc
+    return _extract_text(data)
+
+
+def _extract_text(data: Any) -> str:
+    """Join the non-thought text parts of the first candidate."""
+    if not isinstance(data, dict):
+        raise GeminiError("Gemini returned an unexpected response shape.")
+    candidates = data.get("candidates") or []
+    if not candidates:
+        reason = (data.get("promptFeedback") or {}).get("blockReason")
+        if reason:
+            raise GeminiError(f"Gemini blocked the request ({reason}).")
+        raise GeminiError("Gemini returned no candidates.")
+
+    candidate = candidates[0] or {}
+    parts = ((candidate.get("content") or {}).get("parts")) or []
+    text = "".join(
+        part.get("text", "")
+        for part in parts
+        if isinstance(part, dict) and not part.get("thought")
+    ).strip()
+    if not text:
+        finish = candidate.get("finishReason", "unknown")
+        raise GeminiError(f"Gemini returned an empty answer (finish reason: {finish}).")
+    return text
