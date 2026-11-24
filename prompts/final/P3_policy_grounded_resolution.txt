@@ -1,6 +1,6 @@
 # P3 (v3) - Policy-grounded resolution  [FINAL PROMPT - production]
 # Step 3 of 3 - grounded resolution, guardrails and escalation
-# Tool & model : Gemini 2.5 Flash (Google AI Studio / Gemini API)
+# Tool & model : Gemini 3.5 Flash (Google AI Studio / Gemini API)
 # Settings     : temperature 0.2, JSON requested in the prompt
 # System prompt: included below
 # Output       : JSON object with 12 keys including policy_evidence,

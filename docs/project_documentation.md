@@ -17,7 +17,7 @@ FastAPI backend
         ├── Policy processing  (PyMuPDF extraction, clause splitting)
         ├── Retrieval          (explainable keyword scoring)
         ├── Prompt engineering (v1 basic, v2 structured, v3 policy-grounded)
-        ├── Gemini API         (gemini-2.5-flash, JSON output)
+        ├── Gemini API         (gemini-3.5-flash, JSON output)
         ├── Validation         (Pydantic schemas)
         └── Human review       (deterministic escalation guardrails)
         ▼

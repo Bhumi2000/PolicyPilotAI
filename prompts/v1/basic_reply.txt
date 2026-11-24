@@ -1,6 +1,6 @@
 # P1 (v1) - Basic reply  [BASELINE / earlier version]
 # Step 1 of 3 - first-pass reply generation (kept as a runnable version)
-# Tool & model : Gemini 2.5 Flash (Google AI Studio / Gemini API)
+# Tool & model : Gemini 3.5 Flash (Google AI Studio / Gemini API)
 # Settings     : temperature 0.2, no response schema
 # System prompt: none
 # Output       : plain-text reply (no JSON, no metadata)

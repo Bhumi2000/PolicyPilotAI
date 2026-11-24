@@ -1,6 +1,6 @@
 # P2 (v2) - Structured analysis  [earlier version]
 # Step 2 of 3 - structured complaint analysis
-# Tool & model : Gemini 2.5 Flash (Google AI Studio / Gemini API)
+# Tool & model : Gemini 3.5 Flash (Google AI Studio / Gemini API)
 # Settings     : temperature 0.2, JSON requested in the prompt
 # System prompt: included below
 # Output       : single JSON object with 9 fixed keys

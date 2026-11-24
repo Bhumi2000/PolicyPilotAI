@@ -41,7 +41,7 @@ structured validation, and a human-in-the-loop review step.
 | --- | --- |
 | Frontend | React 18, Vite, Tailwind CSS, React Router, Axios, Recharts |
 | Backend | Python, FastAPI, Pydantic, Uvicorn |
-| AI | Google Gemini (`gemini-2.5-flash`) via the Gemini REST API |
+| AI | Google Gemini (`gemini-3.5-flash`) via the Gemini REST API |
 | Documents | PyMuPDF (PDF text extraction) |
 | Testing | Pytest |
 
@@ -79,6 +79,14 @@ If no `GEMINI_API_KEY` is set, set `ENABLE_DEMO_MODE=true` in `backend/.env`. Th
 return **clearly-labelled deterministic demo output** (`mode: "demo"`, shown with an amber
 banner) so the interface can be explored offline. It is never presented as a real model answer,
 and no fake success is returned when the AI is unconfigured.
+
+### Deploy with live Gemini on Render
+
+The Render Blueprint selects `gemini-3.5-flash` and disables demo mode. Set
+`GEMINI_API_KEY` in the Render service's **Environment** settings; never put the key in
+this repository. For an existing Render Blueprint, add the secret in the Dashboard because
+Render does not apply new `sync: false` variables when syncing an existing Blueprint. Save
+the Environment changes and redeploy. The app's status should then show `Live · gemini-3.5-flash`.
 
 ## Project structure
 

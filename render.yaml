@@ -11,10 +11,12 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.13.0"
-      # Public prototype runs in deterministic demo mode - no API key is shipped.
+      # Live API calls require GEMINI_API_KEY to be set in Render's Environment.
       - key: ENABLE_DEMO_MODE
-        value: "true"
+        value: "false"
       - key: GEMINI_MODEL
-        value: "gemini-2.5-flash"
+        value: "gemini-3.5-flash"
+      - key: GEMINI_API_KEY
+        sync: false
       - key: GEMINI_TEMPERATURE
         value: "0.2"
