@@ -14,6 +14,7 @@ from ..schemas.models import (
     ReviewRequest,
 )
 from ..services.analysis_service import AnalysisError, run_analysis
+from ..services.gemini_client import GeminiError
 from ..store import get_complaint, list_complaints, list_policies, update_complaint
 
 router = APIRouter(prefix="/api/complaints", tags=["complaints"])
@@ -39,6 +40,8 @@ async def analyze_complaint(payload: ComplaintRequest) -> AnalysisRecord:
         return await run_analysis(payload, policy_text)
     except AnalysisError as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
+    except GeminiError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
 
 
 @router.post("/compare", response_model=CompareResponse)
@@ -61,6 +64,8 @@ async def compare_versions(payload: CompareRequest) -> CompareResponse:
             records[version] = await run_analysis(request, policy_text)
         except AnalysisError as exc:
             raise HTTPException(status_code=503, detail=str(exc)) from exc
+        except GeminiError as exc:
+            raise HTTPException(status_code=502, detail=str(exc)) from exc
 
     def score(record: AnalysisRecord) -> str:
         return f"{record.evaluation.total}/25"
