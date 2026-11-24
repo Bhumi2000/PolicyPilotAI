@@ -6,7 +6,9 @@ call.
 """
 from __future__ import annotations
 
-from typing import Any, Optional
+import asyncio
+import time
+from typing import Any, List, Optional, Tuple
 
 import httpx
 
@@ -19,13 +21,30 @@ class GeminiError(Exception):
     """Raised when the Gemini API cannot be reached or returns an error."""
 
 
+# Status codes that mean "temporarily unavailable" - worth retrying / falling back.
+_TRANSIENT = {429, 500, 502, 503, 504}
+_RETRIES_PER_MODEL = 2
+_BACKOFF_SECONDS = 1.5
+# The browser gives up after 90s, so stop trying well before that.
+_TOTAL_BUDGET_SECONDS = 75.0
+_CALL_TIMEOUT_SECONDS = 45.0
+
+
+class _TransientError(GeminiError):
+    """Gemini is overloaded or rate-limited; another attempt may succeed."""
+
+
 async def generate(
     system_prompt: str,
     user_prompt: str,
     temperature: Optional[float] = None,
     json_mode: bool = True,
-) -> str:
-    """Call Gemini and return the raw text of the first candidate."""
+) -> Tuple[str, str]:
+    """Call Gemini and return ``(text, model_used)``.
+
+    Temporary failures (overloaded model, rate limit) are retried with backoff and
+    then the configured fallback models are tried in order.
+    """
     if not settings.gemini_api_key:
         raise GeminiError("GEMINI_API_KEY is not configured.")
 
@@ -40,12 +59,51 @@ async def generate(
     if json_mode:
         payload["generationConfig"]["responseMimeType"] = "application/json"
 
-    url = _ENDPOINT.format(model=settings.gemini_model)
+    models: List[str] = []
+    for model in [settings.gemini_model, *settings.gemini_fallback_models]:
+        if model and model not in models:
+            models.append(model)
+
+    last_error: Optional[GeminiError] = None
+    deadline = time.monotonic() + _TOTAL_BUDGET_SECONDS
+    async with httpx.AsyncClient() as client:
+        for model in models:
+            for attempt in range(_RETRIES_PER_MODEL):
+                remaining = deadline - time.monotonic()
+                if remaining < 3:
+                    break
+                try:
+                    timeout = min(_CALL_TIMEOUT_SECONDS, remaining)
+                    return await _call(client, model, payload, timeout), model
+                except _TransientError as exc:
+                    last_error = exc
+                    if attempt + 1 < _RETRIES_PER_MODEL:
+                        await asyncio.sleep(_BACKOFF_SECONDS * (attempt + 1))
+                except GeminiError as exc:
+                    # A model that is missing for this key: try the next one.
+                    last_error = exc
+                    if "was not found" not in str(exc):
+                        raise
+                    break
+    if last_error is None:
+        last_error = GeminiError("Gemini did not answer in time.")
+    raise GeminiError(
+        f"{last_error} (tried: {', '.join(models)}). Please retry in a minute."
+    )
+
+
+async def _call(
+    client: httpx.AsyncClient, model: str, payload: dict, timeout: float
+) -> str:
+    url = _ENDPOINT.format(model=model)
     try:
-        async with httpx.AsyncClient(timeout=60.0) as client:
-            response = await client.post(
-                url, params={"key": settings.gemini_api_key}, json=payload
-            )
+        response = await client.post(
+            url, headers={"x-goog-api-key": settings.gemini_api_key},
+            json=payload,
+            timeout=timeout,
+        )
+    except httpx.TimeoutException as exc:
+        raise _TransientError(f"Gemini model '{model}' timed out.") from exc
     except httpx.HTTPError as exc:
         raise GeminiError(f"Could not reach the Gemini API: {exc}") from exc
 
@@ -57,11 +115,13 @@ async def generate(
         )
     if response.status_code == 404:
         raise GeminiError(
-            f"Gemini model '{settings.gemini_model}' was not found or is not available "
-            "for this API key. Set GEMINI_MODEL to a model your key can use."
+            f"Gemini model '{model}' was not found or is not available for this API key."
         )
-    if response.status_code == 429:
-        raise GeminiError("Gemini rate limit hit (429). Wait a moment and retry.")
+    if response.status_code in _TRANSIENT:
+        raise _TransientError(
+            f"Gemini model '{model}' is temporarily unavailable ({response.status_code}, "
+            "high demand or rate limit)"
+        )
     if response.status_code >= 400:
         raise GeminiError(f"Gemini error {response.status_code}: {response.text[:200]}")
 

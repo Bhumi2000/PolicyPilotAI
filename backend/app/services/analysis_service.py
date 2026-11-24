@@ -149,8 +149,9 @@ async def run_analysis(request: ComplaintRequest, policy_text: str) -> AnalysisR
         )
 
     started = time.perf_counter()
+    model_used = "demo"
     if mode == "live":
-        raw = await gemini_client.generate(
+        raw, model_used = await gemini_client.generate(
             prompt.system_prompt, user_prompt, json_mode=(version != "v1")
         )
     else:  # demo
@@ -160,7 +161,7 @@ async def run_analysis(request: ComplaintRequest, policy_text: str) -> AnalysisR
     result = _parse(version, raw)
     if result is None and mode == "live":
         # One retry for a malformed answer, then fail honestly.
-        raw = await gemini_client.generate(
+        raw, model_used = await gemini_client.generate(
             prompt.system_prompt, user_prompt, json_mode=(version != "v1")
         )
         result = _parse(version, raw)
@@ -177,7 +178,7 @@ async def run_analysis(request: ComplaintRequest, policy_text: str) -> AnalysisR
         created_at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
         prompt_version=version,
         mode=mode,
-        model=(settings.gemini_model if mode == "live" else "demo"),
+        model=model_used,
         latency_ms=latency_ms,
         input=request,
         result=result,
